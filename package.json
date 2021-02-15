@@ -23,7 +23,10 @@
     "helmet": "^3.22.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.10.7",
-    "validator": "^13.0.0"
+    "validator": "^13.0.0",
+    "prom-client": "^13.1.0",
+    "prometheus-api-metrics": "^3.1.0",
+    "express-basic-auth": "1.2.0"
   },
   "engines": {
     "node": ">=12.16.0",
