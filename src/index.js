@@ -10,6 +10,9 @@ const errorRoutes = require('./routes/error');
 const envRoute = require('./routes/env.js');
 let cookieParser = require('cookie-parser');
 
+const apiMetrics = require('prometheus-api-metrics'); 
+const basicAuth = require('express-basic-auth'); 
+
 const app = express();
 const port = process.env.PORT || 5000;
 
@@ -34,7 +37,11 @@ app.use(helmet.contentSecurityPolicy({
 
 app.use(todoRoutes);
 app.use(userRoutes);
-app.use('/', express.static(path.resolve(__dirname, `./public`)));
+app.use(express.static("public"));
+
+app.use('/metrics', basicAuth({users: {[process.env.METRICS_AUTH_USERNAME]: process.env.METRICS_AUTH_PASSWORD}})); //Sichert /metrics-Pfad mit basic_auth ab
+app.use(apiMetrics()); //stellt Metriken über /metrics Pfad für Prometheus bereit
+
 // IMPORTANT: Educational purpose only! Possibly exposes sensitive data.
 app.use(envRoute);
 // NOTE: must be last one, because is uses a wildcard (!) that behaves aa
