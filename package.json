@@ -7,7 +7,8 @@
     "start": "node src/index.js",
     "start:dev": "env-cmd -f ./dev.env nodemon src/index.js",
     "test": "jest --ci",
-    "test:dev": "env-cmd -f ./dev.env jest"
+    "test:dev": "env-cmd -f ./dev.env jest",
+    "build": "sh build.sh"
   },
   "devDependencies": {
     "env-cmd": "^10.1.0",
