@@ -1,1 +1,7 @@
 .local
+.DS_Store
+/client/node_modules 
+/client/build
+/node_modules
+/public
+*.env
